@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
+import {AuthService} from "../security/services/auth.service";
+import {User} from "../security/model/user";
 
 @Component({
   selector: 'app-register',
@@ -11,9 +13,8 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private route: Router) {
+              private route: Router, private driverService: AuthService) {
     this.form = this.fb.group({
-      id: [''],
       fullName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -28,26 +29,26 @@ export class RegisterComponent implements OnInit {
 
   register() {
 
-    //ACA HAY UN EJEMPLO DE LA LOGICA PARA EL REGISTRO AHI COMPLETAS CON LOS DATOS Y EL SERVICIO
-
-    /*const driver: Driver ={
-      id: this.form.value.id,
-      fullName: this.form.value.firstName,
-      email: this.form.value.lastName,
-      password: this.form.value.email,
-      phone: this.form.value.password,
-      username: this.form.value.phone,
-      vehicleNumber: this.form.value.date,
+    const driver: User ={
+      creditCardId: 1,
+      fullName: this.form.value.fullName,
+      email: this.form.value.email,
+      password: this.form.value.password,
+      contact: this.form.value.phone,
+      username: this.form.value.username,
+      vehicleNumber: this.form.value.vehicleNumber,
     }
 
-    this._driverService.create(driver)
+    console.log(driver)
+
+    this.driverService.create(driver)
       .subscribe(res =>{
           this.form.reset();
           this.route.navigate(['/login'])
         },
         er => console.log(er),
         ()=>console.log('Finish'),
-      );*/
+      );
   }
 
 

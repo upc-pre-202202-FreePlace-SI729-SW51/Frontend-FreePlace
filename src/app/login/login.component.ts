@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
+import {AuthService} from "../security/services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -10,26 +11,22 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-  email: string = "";
-  password: string = "";
+
   ngOnInit(): void {
   }
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private driverService: AuthService) {
     this.form = this.fb.group({
-      id: 0,
-      email: ['', Validators.required, Validators.email],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     })
   }
 
   validateLogin() {
 
-    //ACA HAY UN EJEMPLO DE LA LOGICA PARA EL LOGIN AHI COMPLETAS CON LOS DATOS Y EL SERVICIO
-
-    /*
-     const formValue = this.form.value;
-    this._driverService.getEmail(formValue.email)
+    const formValue = this.form.value;
+    console.log(formValue)
+    this.driverService.getByUsername(formValue.email)
       .subscribe((res)=>{
         console.log(res)
         if(res.length==0)
@@ -38,13 +35,13 @@ export class LoginComponent implements OnInit {
         } else {
           console.log(res.password);
           if (res.password===formValue.password) {
-            this.route.navigate(['home/', res.id])
+            this.router.navigate(['home/', res.id])
           } else {
             alert('Email or password are wrong')
           }
         }
       })
-     */
+
   }
 
   navigateRegister() {
