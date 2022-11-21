@@ -22,7 +22,11 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatSelectModule} from "@angular/material/select";
 import { ParkingLotComponent } from './parkingLot/pages/parking-lot/parking-lot.component';
-import { OwnerComponent } from './parkingLot/pages/owner/owner/owner.component';
+import {OwnerComponent} from "./parkingLot/pages/owner/owner.component";
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 @NgModule({
@@ -30,7 +34,9 @@ import { OwnerComponent } from './parkingLot/pages/owner/owner/owner.component';
     AppComponent,
     PageNotFoundComponent,
     ParkingLotComponent,
-    OwnerComponent
+    OwnerComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +58,11 @@ import { OwnerComponent } from './parkingLot/pages/owner/owner/owner.component';
     MatDividerModule,
     MatStepperModule,
     MatSelectModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
